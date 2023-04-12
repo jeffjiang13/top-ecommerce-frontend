@@ -1,8 +1,7 @@
 const withPWA = require("next-pwa");
+
 module.exports = withPWA({
-  experimental: {
-    appDir: true,
-  },
+  // Remove the experimental property as a test
   images: {
     domains: ["i.ibb.co", "ibb.co"],
   },
