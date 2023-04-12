@@ -1,13 +1,10 @@
 const withPWA = require("next-pwa");
 
 module.exports = withPWA({
-  env: {
-    publishableKey: `${process.env.STRIPE_PUBLIC_KEY}`,
-  },
-  reactStrictMode: true,
   images: {
     domains: ["i.ibb.co", "ibb.co"],
   },
+  reactStrictMode: true,
   pwa: {
     dest: "public",
     register: true,
