@@ -32,6 +32,9 @@ export async function getStaticPaths() {
   const res = await fetch(process.env.NEXT_PUBLIC_APIURL + "/categories");
   const data = await res.json();
 
+  console.log("Data:", data); // Add this line to log the data
+
+
   const paths = data.map((cat) => ({
     params: { slug: cat.slug },
   }));
