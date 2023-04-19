@@ -7,7 +7,11 @@ import { addToBasket } from "../../slices/basketSlice";
 import NotFound from "../404";
 import ProductCard from "../../components/productcard";
 import Head from "next/head";
-import { addToWishlist, removeFromWishlist, selectWishItems } from "../../slices/wishlistSlice";
+import {
+  addToWishlist,
+  removeFromWishlist,
+  selectWishItems,
+} from "../../slices/wishlistSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "react-modal";
 
@@ -80,33 +84,32 @@ function Product({ dataItem, dataAlso }) {
 
           <div className="w-full bg-white md:rounded-2xl shadow-lg md:py-8 md:px-10 md:flex overflow-hidden">
             <div className="photo md:w-1/3">
-            <img
+              <img
                 className="h-30 object-cover w-30 md:rounded-2xl"
                 src={dataItem.image[imgSelected].name}
                 alt=""
                 onClick={openModal}
               />
               <div>
-              <Modal
-                isOpen={isModalOpen}
-                onRequestClose={closeModal}
-                contentLabel="Product Image Modal"
-                className="modal"
-                overlayClassName="modal-overlay"
-              >
-                <img
-                  className="h-full object-cover w-full md:rounded-2xl"
-                  src={dataItem.image[imgSelected].name}
-                  alt=""
-                />
-                <button
-                  onClick={closeModal}
-                  className="absolute top-0 right-0 bg-white text-black p-2 rounded-full"
+                <Modal
+                  isOpen={isModalOpen}
+                  onRequestClose={closeModal}
+                  contentLabel="Product Image Modal"
+                  className="modal"
+                  overlayClassName="modal-overlay"
                 >
-                  &times;
-                </button>
-              </Modal>
-
+                  <img
+                    className="h-full object-cover w-full md:rounded-2xl"
+                    src={dataItem.image[imgSelected].name}
+                    alt=""
+                  />
+                  <button
+                    onClick={closeModal}
+                    className="absolute top-0 right-0 bg-white text-black p-2 rounded-full"
+                  >
+                    &times;
+                  </button>
+                </Modal>
               </div>
               <div className="px-2 md:px-0 flex mt-4">
                 {dataItem.image.map((img, idx) => (
@@ -208,9 +211,8 @@ function Product({ dataItem, dataAlso }) {
                   </motion.span>
                 </button>
                 <button
-              onClick={handleLikeClick}
-
-              className="w-1/5 ml-2 bg-white border border-black py-4 text-black rounded-lg text-sm"
+                  onClick={handleLikeClick}
+                  className="w-1/5 ml-2 bg-white border border-black py-4 text-black rounded-lg text-sm"
                 >
                   <svg
                     className="w-5 h-5 m-auto"

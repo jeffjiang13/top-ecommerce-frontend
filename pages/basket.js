@@ -10,7 +10,9 @@ import Head from "next/head";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
-const stripePromise = loadStripe("pk_test_51MeQBgGsxXy1NXaYmuaYh7FfDG364S7BOvu11OhKsnz7O17B1yi0VpYpnICHV48zXySTel8ey1xaN24eW1XhxpPZ00qO2yQW3H");
+const stripePromise = loadStripe(
+  "pk_test_51MeQBgGsxXy1NXaYmuaYh7FfDG364S7BOvu11OhKsnz7O17B1yi0VpYpnICHV48zXySTel8ey1xaN24eW1XhxpPZ00qO2yQW3H"
+);
 
 function Basket() {
   const router = useRouter();
@@ -64,8 +66,7 @@ function Basket() {
                     GET FREE SHIPPING WITH MEMBER+ ON EVERY ORDER
                   </h1>
                   <p className="text-xs mb-1 text-gray-100">
-                    Non member receive free-shipping for purchases $150
-                    or more
+                    Non member receive free-shipping for purchases $150 or more
                   </p>
                 </div>
                 <div className="rounded-xl bg-white px-5 pt-5 mt-5 shadow-lg overflow-hidden">

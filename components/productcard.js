@@ -20,19 +20,18 @@ function ProductCard({ item }) {
           animate={{ scale: 1, x: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-        <Link href={"/product/" + item.slug}>
-
-          <div className="w-full h-full overflow-hidden rounded-xl">
-            <Image
-              height={700}
-              width={700}
-              loading="lazy"
-              src={item.image[0].name}
-              alt={item.name}
-              className="rounded-xl w-60 h-60 bg-gray object-center"
-            />
-          </div>
-        </Link>
+          <Link href={"/product/" + item.slug}>
+            <div className="w-full h-full overflow-hidden rounded-xl">
+              <Image
+                height={700}
+                width={700}
+                loading="lazy"
+                src={item.image[0].name}
+                alt={item.name}
+                className="rounded-xl w-60 h-60 bg-gray object-center"
+              />
+            </div>
+          </Link>
         </motion.div>
         <div className="hidden absolute rounded-xl h-full w-full bg-gray-500 backdrop-filter backdrop-blur-sm bg-opacity-30 top-0 group group-hover:flex justify-center place-items-center z-10">
           <div className="flex overflow-hidden cursor-pointer">
@@ -70,6 +69,16 @@ function ProductCard({ item }) {
           displayType={"text"}
           thousandSeparator={true}
           prefix={"$"}
-renderText={(value, props) => ( <p className="text-sm font-semibold" {...props}> {value} </p> )} /> </div> </div> ); }
+          renderText={(value, props) => (
+            <p className="text-sm font-semibold" {...props}>
+              {" "}
+              {value}{" "}
+            </p>
+          )}
+        />{" "}
+      </div>{" "}
+    </div>
+  );
+}
 
 export default ProductCard;

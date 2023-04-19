@@ -14,13 +14,12 @@ function WishProduct({ item, idx }) {
         animate={{ scale: 1, x: 0, y: 0, opacity: 1 }}
       >
         <Link href={"/product/" + item.slug}>
-
-        <img
-          className=" rounded-lg object-cover w-full h-60"
-          src={item.image[0].name}
-          alt=""
-        />
-      </Link>
+          <img
+            className=" rounded-lg object-cover w-full h-60"
+            src={item.image[0].name}
+            alt=""
+          />
+        </Link>
       </motion.div>
       <div className="px-2 py-1 text-black">
         <p className="text-sm line-clamp-1">{item.name}</p>

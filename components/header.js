@@ -55,7 +55,7 @@ function Header() {
             </svg>
           </button>
           <h3 className="hidden md:inline text-md mr-2 font-semibold ml-3 text-black">
-          ChiqueChick
+            ChiqueChick
           </h3>
         </div>
         <div className="profile flex items-center place-items-center">
@@ -212,7 +212,7 @@ function Header() {
                 {!cookie && (
                   <Link href="/login">
                     <div className="hover:underline flex place-items-center">
-                      <span >
+                      <span>
                         <svg
                           className="w-6 h-6 text-black"
                           fill="none"
@@ -227,8 +227,8 @@ function Header() {
                             d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                           />
                         </svg>
-                      </span >{" "}
-                        Login
+                      </span>{" "}
+                      Login
                     </div>
                   </Link>
                 )}

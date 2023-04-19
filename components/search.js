@@ -58,9 +58,7 @@ function Search() {
               console.log("Rendering item:", item.slug, item.name);
               return (
                 <div key={idx} onClick={() => handleItemClick(item.slug)}>
-                  <div
-                    className="p-2 flex place-items-center cursor-pointer text-xs font-light text-black hover:bg-gray-100 active:bg-gray-200"
-                  >
+                  <div className="p-2 flex place-items-center cursor-pointer text-xs font-light text-black hover:bg-gray-100 active:bg-gray-200">
                     <span>
                       <img
                         src={item.image[0].name}

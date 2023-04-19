@@ -2,11 +2,10 @@
 
 ### Full Stack E-commerce Website
 
-
 ## About The Project
 
 **Wefootwear E-commerce** is an example online shop built with Next js.
-[demo](https://wefootwear.vercel.app/)
+[demo](https://.vercel.app/)
 
 ## Stacks
 
@@ -27,21 +26,15 @@
 - Search products by category
 - Live search product
 - stripe for processing the payment (test mode)
-(use card number: 4242 4242 4242 4242 to complete the payment)
+  (use card number: 4242 4242 4242 4242 to complete the payment)
 - order page to display successful order
 
 ### Clone Repository
 
 ```
-git clone https://github.com/mudzikalfahri/wefootwear-ecommerce.git
+git clone https://github.com/.git
 ```
 
-#### Add .env.local file to root client directory
-
 ```
-NEXT_PUBLIC_APIURL
-STRIPE_SIGNING_SECRET
-HOST
-STRIPE_SECRET_KEY
-STRIPE_PUBLIC_KEY
+
 ```

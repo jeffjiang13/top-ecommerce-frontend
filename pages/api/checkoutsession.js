@@ -1,4 +1,3 @@
-
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export default async (req, res) => {
@@ -22,7 +21,7 @@ export default async (req, res) => {
     payment_method_types: ["card"],
     // shipping_rates: ["shr_1MeQNmGsxXy1NXaYvYxeMJpl"],
     shipping_address_collection: {
-      allowed_countries: ["US","SG", "MY"],
+      allowed_countries: ["US", "SG", "MY"],
     },
     line_items: transformedItems,
     mode: "payment",
