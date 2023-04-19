@@ -254,6 +254,15 @@ export async function getStaticPaths() {
   const res = await fetch(process.env.NEXT_PUBLIC_APIURL + "/items");
   const data = await res.json();
 
+  // Add this check to ensure the data is an array
+  if (!Array.isArray(data)) {
+    console.error('Data from API is not an array:', data);
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
+
   const paths = data.map((cat) => ({
     params: { slug: cat.slug },
   }));
@@ -263,6 +272,7 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
+
 
 export async function getStaticProps({ params }) {
   const { slug } = params;

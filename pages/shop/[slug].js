@@ -32,6 +32,15 @@ export async function getStaticPaths() {
   const res = await fetch(process.env.NEXT_PUBLIC_APIURL + "/categories");
   const data = await res.json();
 
+  // Add this check to ensure the data is an array
+  if (!Array.isArray(data)) {
+    console.error('Data from API is not an array:', data);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
+
   const paths = data.map((cat) => ({
     params: { slug: cat.slug },
   }));
