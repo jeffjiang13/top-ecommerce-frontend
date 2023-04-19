@@ -6,6 +6,10 @@ function SideCategory({ typesData }) {
   const dispatch = useDispatch();
   const data = useSelector(recentCategory);
   const [recent, setRecent] = useState();
+    if (!Array.isArray(typesData)) {
+    console.error("TypesData prop is not an array:", typesData);
+    return null;
+  }
   useEffect(() => setRecent(data));
   return (
     <div className="bg-white rounded-3xl px-5 py-6 shadow-lg w-2/3 md:w-1/2 lg:w-auto">
