@@ -33,6 +33,7 @@ export async function getServerSideProps(ctx) {
 
   const orders = await Promise.all(
     stripeOrders.docs.map(async (order) => ({
+
       id: order.id,
       amount: order.data().amount,
       amountShipping: order.data().amount_shipping,
@@ -55,12 +56,14 @@ export async function getServerSideProps(ctx) {
 }
 
 function Order({ orders, session }) {
+  console.log("Orders:", orders); // Add this line to log orders
+
   return (
     <>
       <Head>
         <title>ChiqueChick | Orders</title>
       </Head>
-      <div className="w-full min-h-screen relative bg-cusgray pb-10">
+      <div className="w-full min-h-screen relative bg-gray-200 pb-10">
         <Header />
         <div className="max-w-6xl mx-auto pt-20 px-5 grid grid-cols-1 md:grid-cols-4">
           <div className="col-span-1 mb-7">

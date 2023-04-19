@@ -29,8 +29,8 @@ export async function getStaticProps() {
 function Category({ data, dataItems, dataTypes }) {
   const [sort, setSort] = useState(0);
   const recent_category = useSelector(recentCategory);
-  const data_items = dataItems
-    .filter((item) => {
+  const data_items = Array.isArray(dataItems)
+  ? dataItems.filter((item) => {
       if (recent_category.length > 0) {
         return item.type.name == recent_category;
       } else {
@@ -45,7 +45,7 @@ function Category({ data, dataItems, dataTypes }) {
         return b.price - a.price;
       }
       return true;
-    });
+    })  : [];
 
   const [loading, setLoading] = useState(true);
 

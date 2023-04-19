@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 import Router from "next/router";
 import { useDispatch } from "react-redux";
 import { addToWishlist } from "../slices/wishlistSlice";
+import Link from "next/link";
 
 function ProductCard({ item }) {
-  const { size, image } = item.prop[0];
+  const { size } = item.size;
+  const { image } = item.image;
   const dispatch = useDispatch();
 
   return (
@@ -18,15 +20,19 @@ function ProductCard({ item }) {
           animate={{ scale: 1, x: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
         >
-          <Image
-            height={700}
-            width={700}
-            objectFit="cover"
-            loading="lazy"
-            src={image[0]}
-            alt=""
-            className="rounded-xl w-full h-full bg-cusgray"
-          />
+        <Link href={"/product/" + item.slug}>
+
+          <div className="w-full h-full overflow-hidden rounded-xl">
+            <Image
+              height={700}
+              width={700}
+              loading="lazy"
+              src={item.image[0].name}
+              alt={item.name}
+              className="rounded-xl w-60 h-60 bg-gray object-center"
+            />
+          </div>
+        </Link>
         </motion.div>
         <div className="hidden absolute rounded-xl h-full w-full bg-gray-500 backdrop-filter backdrop-blur-sm bg-opacity-30 top-0 group group-hover:flex justify-center place-items-center z-10">
           <div className="flex overflow-hidden cursor-pointer">
@@ -35,7 +41,7 @@ function ProductCard({ item }) {
               className="p-2 bg-white hover:bg-gray-100 active:bg-gray-200 rounded-lg"
             >
               <svg
-                className="w-6 m-auto h-6 text-cusblack"
+                className="w-6 m-auto h-6 text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -58,22 +64,12 @@ function ProductCard({ item }) {
       >
         <p className="text-sm line-clamp-1">{item.name}</p>
         <p className="text-xs my-2 text-gray-400">{item.color}</p>
-        {/* <p className="text-sm font-semibold">Rp {price}</p> */}
         <NumberFormat
           value={item.price}
-          className="text-sm font-semibold text-cusblack"
+          className="text-sm font-semibold text-black"
           displayType={"text"}
           thousandSeparator={true}
-          prefix={"Rp"}
-          renderText={(value, props) => (
-            <p className="text-sm font-semibold" {...props}>
-              {value}
-            </p>
-          )}
-        />
-      </div>
-    </div>
-  );
-}
+          prefix={"$"}
+renderText={(value, props) => ( <p className="text-sm font-semibold" {...props}> {value} </p> )} /> </div> </div> ); }
 
 export default ProductCard;

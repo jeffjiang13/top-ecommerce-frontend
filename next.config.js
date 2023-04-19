@@ -14,7 +14,10 @@ module.exports = withPWA({
 });
 // next.config.js
 module.exports = {
+  env: {
+    STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
+  },
   images: {
-    domains: ['i.ibb.co', 'ibb.co'],
+    domains: ['i.ibb.co', 'ibb.co',"static.footshop.com"],
   },
 };

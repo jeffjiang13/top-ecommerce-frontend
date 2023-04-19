@@ -56,3 +56,33 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  background: white;
+  outline: none;
+  padding: 20px;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Adjust the width of the modal */
+  height: 100%; /* Adjust the height of the modal */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.modal img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}

@@ -15,6 +15,7 @@ function Header() {
   const dataWish = useSelector(selectWishItems);
   const [wish, setWish] = useState([]);
   const [open, setOpen] = useState(false);
+
   const [cookie, setCookie] = useState({});
   useEffect(() => {
     const dataCookie = nookies.get();
@@ -36,12 +37,12 @@ function Header() {
     router.replace("/login");
   };
   return (
-    <nav className="w-full mx-auto fixed bg-cusgray z-30 py-2 md:px-0 duration-200">
+    <nav className="w-full mx-auto fixed bg-gray z-30 py-2 md:px-0 duration-200">
       <div className="px-2 navtop relative max-w-6xl mx-auto flex justify-between place-items-center py-1.5">
         <div className="burger flex items-center">
           <button onClick={handleOpen}>
             <svg
-              className="w-7 h-7 text-cusblack"
+              className="w-7 h-7 text-black"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +54,7 @@ function Header() {
               />
             </svg>
           </button>
-          <h3 className="hidden md:inline text-md mr-2 font-semibold ml-3 text-cusblack">
+          <h3 className="hidden md:inline text-md mr-2 font-semibold ml-3 text-black">
           ChiqueChick
           </h3>
         </div>
@@ -61,7 +62,7 @@ function Header() {
           <Link href="/shop">
             <div className="w-8 relative flex items-center h-8 mr-1 rounded-full hover:bg-gray-200 active:bg-gray-300 cursor-pointer duration-200">
               <svg
-                className="w-6 h-6 text-cusblack m-auto"
+                className="w-6 h-6 text-black m-auto"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -81,8 +82,8 @@ function Header() {
             className="w-8 relative flex items-center h-8 mr-1 rounded-full hover:bg-gray-200 active:bg-gray-300 cursor-pointer duration-200"
           >
             <svg
-              className="w-6 h-6 text-cusblack m-auto"
-              fill="none"
+              className="w-6 h-6 text-black m-auto"
+              fill={items.length > 0 ? "brown" : "none"}
               stroke="currentColor"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +98,7 @@ function Header() {
             {items.length > 0 ? (
               <div
                 className={`flex
-                } absolute text-xs font-light justify-center text-white text-center w-4 h-4 bg-cusblack rounded-full bottom-0 right-0`}
+                } absolute text-xs font-light justify-center text-white text-center w-4 h-4 bg-black rounded-full bottom-0 right-0`}
               >
                 {items.reduce((a, item) => a + item.quantity, 0)}
               </div>
@@ -108,8 +109,8 @@ function Header() {
           <Link href="/wishlist">
             <div className="w-8 relative flex items-center h-8 mr-1 rounded-full hover:bg-gray-200 active:bg-gray-300 cursor-pointer duration-200">
               <svg
-                className="w-6 m-auto h-6 text-cusblack"
-                fill="none"
+                className="w-6 m-auto h-6 text-black"
+                fill={wish.length > 0 ? "red" : "none"}
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +125,7 @@ function Header() {
               {wish.length > 0 ? (
                 <div
                   className={`flex
-                absolute text-xs font-light justify-center text-white text-center w-4 h-4 bg-cusblack rounded-full bottom-0 right-0`}
+                absolute text-xs font-light justify-center text-white text-center w-4 h-4 bg-black rounded-full bottom-0 right-0`}
                 >
                   {wish.length}
                 </div>
@@ -140,7 +141,7 @@ function Header() {
               className="w-8 relative flex items-center h-8 mr-1 rounded-full hover:bg-gray-200 active:bg-gray-300 cursor-pointer duration-200"
             >
               <svg
-                className="w-6 m-auto h-6 text-cusblack"
+                className="w-6 m-auto h-6 text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -161,7 +162,7 @@ function Header() {
             className="w-8 relative flex items-center h-8 rounded-full hover:bg-gray-200 active:bg-gray-300 cursor-pointer duration-200"
           >
             <svg
-              className="w-6 m-auto h-6 text-cusblack"
+              className="w-6 m-auto h-6 text-black"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -175,10 +176,10 @@ function Header() {
               />
             </svg>
             {open && (
-              <div className="p-3 bg-white absolute top-11 leading-relaxed right-0 rounded-lg shadow-lg text-xs text-cusblack">
+              <div className="p-3 bg-white absolute top-11 leading-relaxed right-0 rounded-lg shadow-lg text-xs text-black">
                 {cookie && (
-                  <div className="bg-cusblack text-white p-3 rounded-lg">
-                    <ul className="text-left w-28">
+                  <div className="bg-black text-white p-3 rounded-lg">
+                    <ul className="text-left w-32">
                       <li className="line-clamp-1">{cookie.username}</li>
                       <li className="line-clamp-1">{cookie.email}</li>
                     </ul>
@@ -191,7 +192,7 @@ function Header() {
                   >
                     <span>
                       <svg
-                        className="w-6 h-6 text-cusblack"
+                        className="w-6 h-6 text-black"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -211,9 +212,9 @@ function Header() {
                 {!cookie && (
                   <Link href="/login">
                     <div className="hover:underline flex place-items-center">
-                      <span>
+                      <span >
                         <svg
-                          className="w-6 h-6 text-cusblack"
+                          className="w-6 h-6 text-black"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -226,8 +227,8 @@ function Header() {
                             d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                           />
                         </svg>
-                      </span>{" "}
-                      Sign In
+                      </span >{" "}
+                        Login
                     </div>
                   </Link>
                 )}

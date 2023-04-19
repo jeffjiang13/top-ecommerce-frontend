@@ -20,11 +20,11 @@ function BasketProduct({ item, idx }) {
           >
             <img
               className="w-full md:w-32 h-32 object-cover rounded-xl"
-              src={item.prop[0].image[0]}
+              src={item.image[0].name}
               alt=""
             />
           </motion.div>
-          <div className="ml-3 flex flex-col text-cusblack justify-between py-2">
+          <div className="ml-3 flex flex-col text-black justify-between py-2">
             <p className="font-medium">{item.name}</p>
             <ul className="text-xs md:text-sm leading-relaxed text-gray-400">
               <li>Color: {item.color}</li>
@@ -38,22 +38,22 @@ function BasketProduct({ item, idx }) {
       <div className="flex flex-col justify-between py-1">
         <NumberFormat
           value={item.price}
-          className="font-semibold text-cusblack text-right"
+          className="font-semibold text-black text-right"
           displayType={"text"}
           thousandSeparator={true}
-          prefix={"Rp"}
+          prefix={"$"}
           renderText={(value, props) => (
-            <h1 className="font-semibold text-cusblack text-right" {...props}>
+            <h1 className="font-semibold text-black text-right" {...props}>
               {value}
             </h1>
           )}
         />
-        <div className="flex ml-auto text-cusblack mt-1 md:mt-0">
+        <div className="flex ml-auto text-black mt-1 md:mt-0">
           <button
             onClick={() => {
               if (item.quantity > 1) dispatch(minusItem(idx));
             }}
-            className="border border-cusblack active:bg-gray-800 rounded-sm p-1 hover:bg-cusblack hover:text-white duration-100"
+            className="border border-black active:bg-gray-800 rounded-sm p-1 hover:bg-black hover:text-white duration-100"
           >
             <svg
               className="w-4 h-4"
@@ -72,7 +72,7 @@ function BasketProduct({ item, idx }) {
           </button>
           <button
             onClick={() => dispatch(plusItem(idx))}
-            className="border border-cusblack active:bg-gray-800 rounded-sm p-1 hover:bg-cusblack hover:text-white duration-100 mx-1"
+            className="border border-black active:bg-gray-800 rounded-sm p-1 hover:bg-black hover:text-white duration-100 mx-1"
           >
             <svg
               className="w-4 h-4"
@@ -91,7 +91,7 @@ function BasketProduct({ item, idx }) {
           </button>
           <button
             onClick={() => dispatch(removeFromBasket(item))}
-            className="border border-cusblack active:bg-gray-800 rounded-sm p-1 hover:bg-cusblack hover:text-white duration-100 text-xs px-2 font-medium"
+            className="border border-black active:bg-gray-800 rounded-sm p-1 hover:bg-black hover:text-white duration-100 text-xs px-2 font-medium"
           >
             REMOVE
           </button>

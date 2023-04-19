@@ -8,7 +8,7 @@ function OurStore() {
       <Head>
         <title>ChiqueChick | Store</title>
       </Head>
-      <div className="w-full min-h-screen bg-cusgray ">
+      <div className="w-full min-h-screen bg-gray-200 ">
         <Header />
         <div className="max-w-5xl mx-auto pt-20 pb-10 md:px-0">
           <div className="md:rounded-2xl overflow-hidden bg-white shadow-lg grid grid-cols-1 md:grid-cols-2">
@@ -36,29 +36,25 @@ function OurStore() {
                 />
               </div>
             </div>
-            <div className="px-10 py-10 text-cusblack row-start-1 md:col-start-2">
-              <h1 className="text-xl mb-5 bg-cusblack text-white py-1 px-3 rounded-sm">
+            <div className="px-10 py-10 text-black row-start-1 md:col-start-2">
+              <h1 className="text-xl mb-5 bg-black text-white py-1 px-3 rounded-sm">
                 Our Store
               </h1>
               <div className="my-2">
                 <h3 className="mb-1 text-lg font font-semibold">
-                  ChiqueChick Offline Store
+                  ChiqueChick Store
                 </h3>
                 <p className="text-sm">
-                  Jl. Brigjen Katamso No. 54, West Progo.
+                <a href="https://chiquechickshop.com/">ChiqueChickShop</a>
                 </p>
               </div>
               <div className="my-2 mt-4">
-                <h3 className="mb-1 text-lg font font-semibold">
-                  Monday Center
-                </h3>
-                <p className="text-sm">Jl. Malioboro No. 4, Yogyakarta.</p>
+                <h3 className="mb-1 text-lg font font-semibold">ChiqueChick</h3>
+                Work in progress, feel free to check it out!<a href="https://jj-react-ecommerce.vercel.app/"> click here</a>
               </div>
               <div className="my-2 mt-4">
                 <h3 className="mb-1 text-lg font font-semibold">Flight Club</h3>
-                <p className="text-sm">
-                  535 N Fairfax Ave, Los Angeles, CA 90036, AS.
-                </p>
+                Work in progress, feel free to check it out!<a href='https://jj-ecommerce-store.vercel.app/'> click here</a>
               </div>
             </div>
           </div>

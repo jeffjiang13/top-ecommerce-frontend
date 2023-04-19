@@ -9,14 +9,14 @@ function Layout({ children, categories, types, setSort }) {
   const [grid, setGrid] = useState(4);
   const [sortOpen, setSortOpen] = useState(false);
   return (
-    <div className="w-full min-h-screen bg-cusgray pb-10">
+    <div className="w-full min-h-screen bg-gray-200 pb-10">
       <Header />
       <button
         onClick={() => setOpen(!open)}
         className="w-12 h-12 rounded-full bg-white fixed z-30 drop-shadow-2xl lg:hidden flex justify-center place-items-center bottom-0 left-0 m-5"
       >
         <svg
-          className="w-6 text-cusblack h-6"
+          className="w-6 text-black h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -37,7 +37,7 @@ function Layout({ children, categories, types, setSort }) {
             onClick={() => setOpen(!open)}
             className={`${
               open ? `fixed` : `hidden`
-            } lg:static lg:inline bg-gray-400 lg:bg-cusgray h-screen bg-opacity-30 z-20 flex w-full justify-center place-items-center top-0 lg:p-4`}
+            } lg:static lg:inline  lg:bg-gray h-screen bg-opacity-30 z-20 flex w-full justify-center place-items-center top-0 lg:p-4`}
           >
             <SideCategory typesData={types} />
           </div>

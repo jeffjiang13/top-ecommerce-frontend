@@ -1,49 +1,80 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Router from "next/router";
+import debounce from "lodash.debounce";
 
 function Search() {
   const [input, setInput] = useState("");
   const [data, setData] = useState([]);
-  const handleChange = async (e) => {
-    setInput(e.target.value);
+  const [showResults, setShowResults] = useState(false);
+
+  const fetchItems = async (searchTerm) => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_APIURL}/items?name_contains=${input}`
+      `${process.env.NEXT_PUBLIC_APIURL}/items?name_contains=${searchTerm}`
     );
     const data = await res.json();
     setData(data);
+    console.log("Data received:", data);
   };
+
+  const debouncedFetchItems = debounce(fetchItems, 500);
+
+  useEffect(() => {
+    if (input) {
+      debouncedFetchItems(input);
+    } else {
+      setData([]);
+    }
+    return () => {
+      debouncedFetchItems.cancel();
+    };
+  }, [input]);
+
+  const handleItemClick = (slug) => {
+    console.log("Item clicked:", slug);
+    setInput("");
+    Router.push("/product/" + slug);
+  };
+
   return (
     <div className="flex relative group md:ml-auto justify-between pr-4 place-items-center flex-grow h-full rounded-3xl bg-white">
       <input
-        onChange={handleChange}
-        className="text-xs group pl-4 rounded-3xl p-2.5 focus:outline-none w-full text-cusblack"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        className="text-xs group pl-4 rounded-3xl p-2.5 focus:outline-none w-full text-black"
         type="text"
         placeholder="Search product"
+        onFocus={() => setShowResults(true)}
+        onBlur={() => setTimeout(() => setShowResults(false), 100)}
       />
-      <div className="p-5 shadow-lg hidden duration-100 group-focus-within:inline group-active:inline top-11 bg-white absolute rounded-2xl w-full z-20">
+      <div
+        className={`p-5 shadow-lg ${
+          showResults ? "block" : "hidden"
+        } top-11 bg-white absolute rounded-2xl w-full z-20`}
+      >
         {data.length ? (
           data
             .filter((i, idx) => idx < 4)
-            .map((item, idx) => (
-              <div onClick={() => Router.push("/product/" + item.slug)}>
-                <div
-                  key={idx}
-                  className="p-2 flex place-items-center cursor-pointer text-xs font-light text-cusblack hover:bg-gray-100 active:bg-gray-200"
-                >
-                  <span>
-                    <img
-                      src={item.prop[0].image[0]}
-                      className="w-7 h-7 mr-1 rounded-lg"
-                      alt=""
-                    />
-                  </span>
-                  {item.name}
+            .map((item, idx) => {
+              console.log("Rendering item:", item.slug, item.name);
+              return (
+                <div key={idx} onClick={() => handleItemClick(item.slug)}>
+                  <div
+                    className="p-2 flex place-items-center cursor-pointer text-xs font-light text-black hover:bg-gray-100 active:bg-gray-200"
+                  >
+                    <span>
+                      <img
+                        src={item.image[0].name}
+                        className="w-7 h-7 mr-1 rounded-lg"
+                        alt=""
+                      />
+                    </span>
+                    {item.name}
+                  </div>
                 </div>
-              </div>
-            ))
+              );
+            })
         ) : (
-          <p className="text-xs text-cusblack font-light">No item found</p>
+          <p className="text-xs text-black font-light">No item found</p>
         )}
       </div>
       <svg

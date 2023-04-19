@@ -16,7 +16,7 @@ function Success() {
       <Head>
         <title>Payment Success</title>
       </Head>
-      <div className="w-full min-h-screen bg-cusgray ">
+      <div className="w-full min-h-screen bg-gray-200">
         <Header />
         <div className="flex min-h-screen place-items-center justify-center">
           <div className="max-w-3xl mx-auto pb-10 w-10/12 md:w-auto">
@@ -25,7 +25,7 @@ function Success() {
               animate={{ opacity: 1 }}
               className="rounded-2xl overflow-hidden bg-white shadow-lg p-5 flex place-items-center justify-center"
             >
-              <div className="flex flex-col place-items-center text-center text-cusblack">
+              <div className="flex flex-col place-items-center text-center text-black">
                 <svg
                   className="w-28 h-28 text-green-400"
                   fill="none"
@@ -50,7 +50,7 @@ function Success() {
                 </p>
                 <button
                   onClick={() => Router.push("/orders")}
-                  className="py-2 px-4 text-xs hover:bg-white hover:text-cusblack duration-200 hover:border-cusblack border rounded-lg my-2 bg-cusblack text-white"
+                  className="py-2 px-4 text-xs hover:bg-white hover:text-black duration-200 hover:border-black border rounded-lg my-2 bg-black text-white"
                 >
                   See My Orders
                 </button>

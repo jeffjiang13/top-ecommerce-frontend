@@ -3,31 +3,61 @@ import Header from "../../components/header";
 import NumberFormat from "react-number-format";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
 import { addToBasket } from "../../slices/basketSlice";
 import NotFound from "../404";
-import { addToWishlist } from "../../slices/wishlistSlice";
 import ProductCard from "../../components/productcard";
 import Head from "next/head";
+import { addToWishlist, removeFromWishlist, selectWishItems } from "../../slices/wishlistSlice";
+import { useSelector, useDispatch } from "react-redux";
+import Modal from "react-modal";
 
 function Product({ dataItem, dataAlso }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [selectedSize, setSelectedSize] = useState(0);
   const dispatch = useDispatch();
   const [imgSelected, setImgSelected] = useState(0);
+  const [liked, setLiked] = useState(false);
+  const wishlistItems = useSelector(selectWishItems);
+  const isInWishlist = (product) => {
+    if (!product || !product.id) return false;
+
+    return wishlistItems.some((wishlistItem) => wishlistItem.id === product.id);
+  };
+
+  const handleLikeClick = () => {
+    if (isInWishlist(dataItem)) {
+      dispatch(removeFromWishlist(dataItem));
+    } else {
+      dispatch(addToWishlist(dataItem));
+    }
+    setLiked(!liked);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   if (!dataItem || !dataAlso) return <NotFound />;
+  useEffect(() => {
+    setLiked(isInWishlist(dataItem));
+  }, [wishlistItems, dataItem]);
 
   return (
     <>
       <Head>
         <title>{dataItem.name}</title>
       </Head>
-      <div className="bg-cusgray min-h-screen pb-10">
+      <div className="bg-gray min-h-screen pb-10 bg-gray-200">
         <Header />
         <div className="max-w-4xl mx-auto min-h-screen pt-16">
           <div className="flex justify-between place-items-center py-4 px-1 mb-4">
             <Link href="/shop">
-              <div className="w-9 h-9 shadow-lg bg-white text-cusblack hover:bg-cusblack hover:text-white duration-200 cursor-pointer rounded-full flex justify-center place-items-center">
+              <div className="w-9 h-9 shadow-lg bg-white text-black hover:bg-black hover:text-white duration-200 cursor-pointer rounded-full flex justify-center place-items-center">
                 <svg
                   className="w-4 h-4 "
                   fill="none"
@@ -44,28 +74,49 @@ function Product({ dataItem, dataAlso }) {
                 </svg>
               </div>
             </Link>
-            <h4 className="text-cusblack text-md">Product Details</h4>
+            <h4 className="text-black text-md font-bold">Product Details</h4>
             <div className="w-8"></div>
           </div>
 
           <div className="w-full bg-white md:rounded-2xl shadow-lg md:py-8 md:px-10 md:flex overflow-hidden">
             <div className="photo md:w-1/3">
+            <img
+                className="h-30 object-cover w-30 md:rounded-2xl"
+                src={dataItem.image[imgSelected].name}
+                alt=""
+                onClick={openModal}
+              />
               <div>
+              <Modal
+                isOpen={isModalOpen}
+                onRequestClose={closeModal}
+                contentLabel="Product Image Modal"
+                className="modal"
+                overlayClassName="modal-overlay"
+              >
                 <img
-                  className=" h-60 object-cover w-full md:rounded-2xl"
-                  src={dataItem.prop[0].image[imgSelected]}
+                  className="h-full object-cover w-full md:rounded-2xl"
+                  src={dataItem.image[imgSelected].name}
                   alt=""
                 />
+                <button
+                  onClick={closeModal}
+                  className="absolute top-0 right-0 bg-white text-black p-2 rounded-full"
+                >
+                  &times;
+                </button>
+              </Modal>
+
               </div>
               <div className="px-2 md:px-0 flex mt-4">
-                {dataItem.prop[0].image.map((img, idx) => (
+                {dataItem.image.map((img, idx) => (
                   <img
                     key={idx}
-                    src={img}
+                    src={img.name}
                     onClick={() => setImgSelected(idx)}
                     className={`${
                       imgSelected == idx
-                        ? `border-2 border-cusblack filter brightness-90 `
+                        ? `border-2 border-black filter brightness-90 `
                         : ``
                     } md:w-14 md:h-14 h-16 w-16 rounded-xl object-cover mr-3 cursor-pointer duration-100 `}
                     alt=""
@@ -92,16 +143,16 @@ function Product({ dataItem, dataAlso }) {
                 </span>
                 {dataItem.category.name}
               </p>
-              <h1 className="text-3xl text-cusblack font-medium my-3">
+              <h1 className="text-3xl text-black font-medium my-3">
                 {dataItem.name}
               </h1>
               <p className="text-sm text-gray-400">{dataItem.color}</p>
               <NumberFormat
                 value={dataItem.price}
-                className="my-3 font-semibold text-lg text-cusblack"
+                className="my-3 font-semibold text-lg text-black"
                 displayType={"text"}
                 thousandSeparator={true}
-                prefix={"Rp"}
+                prefix={"$"}
                 renderText={(value, props) => (
                   <p className="text-sm font-semibold" {...props}>
                     {value}
@@ -111,17 +162,17 @@ function Product({ dataItem, dataAlso }) {
               <div className="sizes text-sm text-gray-400">
                 <p className="mb-2">Select size</p>
                 <div className="flex">
-                  {dataItem.prop[0].size.map((size, idx) => (
+                  {dataItem.size.data.map((size, idx) => (
                     <button
                       onClick={() => setSelectedSize(idx)}
                       key={idx}
                       className={`${
                         selectedSize === idx
-                          ? `bg-cusblack text-white`
-                          : `text-cusblack border border-cusblack`
-                      } mr-2 duration-200 flex place-items-center justify-center rounded-full w-12 h-12 cursor-pointer hover:bg-cusblack hover:text-white`}
+                          ? `bg-black text-white`
+                          : `text-black border border-black`
+                      } text-black mr-2 duration-200 flex place-items-center justify-center rounded-full w-12 h-12 cursor-pointer hover:bg-black hover:text-white`}
                     >
-                      {size}
+                      {size.size}
                     </button>
                   ))}
                 </div>
@@ -132,11 +183,11 @@ function Product({ dataItem, dataAlso }) {
                     dispatch(
                       addToBasket({
                         ...dataItem,
-                        selectedSizeProp: dataItem.prop[0].size[selectedSize],
+                        selectedSizeProp: dataItem.size[selectedSize],
                       })
                     );
                   }}
-                  className="w-4/5 md:w-3/5 bg-cusblack overflow-hidden py-4 text-white rounded-lg text-sm active:bg-gray-800 duration-100"
+                  className="w-4/5 md:w-3/5 bg-black overflow-hidden py-4 text-white rounded-lg text-sm active:bg-gray-800 duration-100"
                 >
                   <motion.span
                     initial={{ y: -100 }}
@@ -157,12 +208,13 @@ function Product({ dataItem, dataAlso }) {
                   </motion.span>
                 </button>
                 <button
-                  onClick={() => dispatch(addToWishlist(item))}
-                  className="w-1/5 ml-2 bg-white border border-cusblack py-4 text-cusblack rounded-lg text-sm"
+              onClick={handleLikeClick}
+
+              className="w-1/5 ml-2 bg-white border border-black py-4 text-black rounded-lg text-sm"
                 >
                   <svg
                     className="w-5 h-5 m-auto"
-                    fill="none"
+                    fill={liked ? "red" : "none"}
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
@@ -179,7 +231,7 @@ function Product({ dataItem, dataAlso }) {
             </div>
           </div>
 
-          <div className="text-cusblack p-2 md:px-10 md:py-6 mt-14 bg-white md:rounded-2xl shadow-lg">
+          <div className="text-black p-2 md:px-10 md:py-6 mt-14 bg-white md:rounded-2xl shadow-lg">
             <p className="mb-4 font-medium text-lg">You may also like:</p>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-x-4 gap-y-6">
               {dataAlso

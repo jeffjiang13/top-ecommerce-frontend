@@ -10,7 +10,7 @@ import Head from "next/head";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { useRouter } from "next/dist/client/router";
-const stripePromise = loadStripe(process.env.publishableKey);
+const stripePromise = loadStripe("pk_test_51MeQBgGsxXy1NXaYmuaYh7FfDG364S7BOvu11OhKsnz7O17B1yi0VpYpnICHV48zXySTel8ey1xaN24eW1XhxpPZ00qO2yQW3H");
 
 function Basket() {
   const router = useRouter();
@@ -53,18 +53,18 @@ function Basket() {
       <Head>
         <title>ChiqueChick | Basket</title>
       </Head>
-      <div className="w-full min-h-screen relative bg-cusgray pb-10">
+      <div className="w-full min-h-screen relative bg-gray-200 pb-10">
         <Header />
         <div className="max-w-6xl mx-auto pt-20 px-5">
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-x-4">
             <div className="md:col-span-2 md:mr-5">
               <div className="">
-                <div className="shadow-lg rounded-xl bg-cusblack text-white px-5 py-3">
+                <div className="shadow-lg rounded-xl bg-black text-white px-5 py-3">
                   <h1 className="font-semibold text-lg md:text-xl mb-1">
                     GET FREE SHIPPING WITH MEMBER+ ON EVERY ORDER
                   </h1>
                   <p className="text-xs mb-1 text-gray-100">
-                    Non member receive free-shipping for purchases Rp 1,500,000
+                    Non member receive free-shipping for purchases $150
                     or more
                   </p>
                 </div>
@@ -100,7 +100,7 @@ function Basket() {
 
             <div className="mt-10 md:mt-0 col-span-1">
               <div className="rounded-xl bg-white shadow-lg py-6 px-5">
-                <h1 className="text-cusblack font-bold text-md">SUMMARY</h1>
+                <h1 className="text-black font-bold text-md">SUMMARY</h1>
                 <div className="px-4 py-3 text-xs font-medium flex place-items-center text-gray-400 border border-gray-200 rounded-md my-4">
                   <svg
                     className="w-5 h-5 mr-3"
@@ -119,7 +119,7 @@ function Basket() {
                   DO YOU HAVE PROMO CODE?
                 </div>
 
-                <div className="text-sm pt-1 font-semibold pb-2 border-b border-cusblack flex justify-between place-items-center">
+                <div className="text-sm pt-1 font-semibold pb-2 border-b border-black flex justify-between place-items-center">
                   <p className="">SUBTOTAL</p>
                   <NumberFormat
                     value={items.reduce(
@@ -128,12 +128,12 @@ function Basket() {
                     )}
                     displayType={"text"}
                     thousandSeparator={true}
-                    prefix={"Rp"}
+                    prefix={"$"}
                     renderText={(value, props) => <p {...props}>{value}</p>}
                   />
                 </div>
 
-                <div className="my-3 border-b border-cusblack pb-2">
+                <div className="my-3 border-b border-black pb-2">
                   {items.map((item, idx) => (
                     <div
                       key={idx}
@@ -144,7 +144,7 @@ function Basket() {
                         value={item.price * item.quantity}
                         displayType={"text"}
                         thousandSeparator={true}
-                        prefix={"Rp"}
+                        prefix={"$"}
                         renderText={(value, props) => <p {...props}>{value}</p>}
                       />
                     </div>
@@ -164,7 +164,7 @@ function Basket() {
                     )}
                     displayType={"text"}
                     thousandSeparator={true}
-                    prefix={"Rp"}
+                    prefix={"$"}
                     renderText={(value, props) => <p {...props}>{value}</p>}
                   />
                 </div>
@@ -172,7 +172,7 @@ function Basket() {
                 <button
                   disabled={!items.length}
                   onClick={createCheckoutSession}
-                  className="py-2 px-3 disabled:cursor-not-allowed text-white w-full mt-6 rounded-lg bg-cusblack "
+                  className="py-2 px-3 disabled:cursor-not-allowed text-white w-full mt-6 rounded-lg bg-black "
                 >
                   {!loading ? (
                     <span className="flex justify-center place-items-center">

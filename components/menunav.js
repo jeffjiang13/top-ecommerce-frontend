@@ -14,7 +14,7 @@ function MenuNav({ handleOpen, isOpen }) {
         !isOpen ? `hidden` : `flex`
       } w-full h-screen absolute top-0 bg-gray-700 bg-opacity-30`}
     >
-      <div className="text-center relative leading-loose flex place-items-center text-md text-cusblack w-52 h-screen bg-white">
+      <div className="text-center relative leading-loose flex place-items-center text-md text-black w-52 h-screen bg-white">
         <button onClick={handleOpen} className=" absolute top-0 right-0 m-5">
           <svg
             className="w-6 h-6"
@@ -42,7 +42,7 @@ function MenuNav({ handleOpen, isOpen }) {
               Shop
             </li>
           </Link>
-          <Link href="/ourstore">
+          <Link href="/about">
             <li className="mb-2 hover:underline mx-4 rounded-xl cursor-pointer">
               About
             </li>

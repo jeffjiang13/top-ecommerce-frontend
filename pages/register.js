@@ -62,7 +62,7 @@ function Register() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="w-full min-h-screen relative bg-cusgray pb-10 flex justify-center place-items-center"
+        className="w-full min-h-screen relative bg-gray-200 pb-10 flex justify-center place-items-center"
       >
         {loading && (
           <div className="w-full h-screen flex justify-center place-items-center absolute top-0 right-0 bg-white backdrop-blur-sm bg-opacity-20">
@@ -78,7 +78,7 @@ function Register() {
           onSubmit={doRegister}
           className="p-5 max-w-md mx-2 bg-white flex flex-col place-items-center shadow-lg rounded-xl"
         >
-          <h1 className="text-center text-xl font-bold text-cusblack leading-6 my-5">
+          <h1 className="text-center text-xl font-bold text-black leading-6 my-5">
             BECOME A MEMBER
           </h1>
           <p className="text-sm font-medium text-gray-400 mb-4 text-center px-6">
@@ -122,14 +122,14 @@ function Register() {
           </p>
           <button
             type="submit"
-            className="bg-cusblack rounded-sm w-full text-white py-2 mt-3"
+            className="bg-black rounded-sm w-full text-white py-2 mt-3"
           >
             JOIN US
           </button>
           <div className="text-xs text-gray-400 mt-5">
             Already have?{" "}
             <Link href="/login">
-              <a className="underline">Sign In</a>
+              <p className="underline">Sign In</p>
             </Link>
           </div>
         </form>

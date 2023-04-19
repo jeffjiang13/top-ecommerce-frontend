@@ -11,15 +11,15 @@ function TopCategory({ categories }) {
 
   const [isActive, setIsActive] = useState("/shop");
   return (
-    <div className="navbot bg-cusgray z-30 w-full px-1 md:px-0">
+    <div className="navbot bg-gray z-30 w-full px-1 md:px-0">
       <div className=" mx-auto md:flex place-items-center max-w-6xl">
         <div className="category overflow-x-auto flex flex-wrap place-items-center py-2">
           <Link key="all" href={`/shop`}>
             <button
               className={`${
                 isActive == `/shop`
-                  ? `bg-cusblack text-white shadow-lg `
-                  : `bg-white text-cusblack`
+                  ? `bg-black text-white shadow-lg `
+                  : `bg-white text-black`
               } py-2.5 px-6 rounded-3xl text-xs mr-3 mb-2 md:mb-0`}
             >
               All items
@@ -30,8 +30,8 @@ function TopCategory({ categories }) {
               <button
                 className={`${
                   isActive == `/shop/${cat.slug}`
-                    ? `bg-cusblack text-white shadow-lg `
-                    : `bg-white text-cusblack`
+                    ? `bg-black text-white shadow-lg `
+                    : `bg-white text-black`
                 } py-2.5 px-6 rounded-3xl text-xs mr-3 mb-2 md:mb-0`}
               >
                 {cat.name}

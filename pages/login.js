@@ -60,7 +60,7 @@ function Login() {
       <Head>
         <title>ChiqueChick | Login</title>
       </Head>
-      <div className="w-full min-h-screen relative bg-cusgray pb-10 flex justify-center place-items-center">
+      <div className="w-full min-h-screen relative bg-gray-200 pb-10 flex justify-center place-items-center">
         {loading && (
           <div className="w-full h-screen flex justify-center place-items-center absolute top-0 right-0 bg-white backdrop-blur-sm bg-opacity-20">
             <img
@@ -82,7 +82,7 @@ function Login() {
               alt=""
             />
           </Link>
-          <h1 className="text-center text-xl font-bold text-cusblack leading-6 my-5">
+          <h1 className="text-center text-xl font-bold text-black leading-6 my-5">
             YOUR ACCOUNT FOR
             <br />
             EVERYTHING
@@ -115,7 +115,7 @@ function Login() {
             </p>
             <button
               type="submit"
-              className="bg-cusblack rounded-sm w-full text-white py-2 mt-3"
+              className="bg-black rounded-sm w-full text-white py-2 mt-3"
             >
               SIGN IN
             </button>
@@ -123,7 +123,7 @@ function Login() {
           <div className="text-xs text-gray-400 mt-5">
             Not a member?{" "}
             <Link href="/register">
-              <a className="underline">Join Us</a>
+              <p className="underline">Join Us</p>
             </Link>
           </div>
         </motion.div>

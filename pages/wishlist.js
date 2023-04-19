@@ -16,7 +16,7 @@ function WishList() {
       <Head>
         <title>ChiqueChick | Wishlist</title>
       </Head>
-      <div className="w-full min-h-screen relative bg-cusgray pb-10">
+      <div className="w-full min-h-screen relative bg-gray-200 pb-10">
         <Header />
         <div className="max-w-6xl mx-auto pt-20 px-5 min-h-screen">
           <div className="bg-white rounded-xl shadow-lg grid grid-cols-1 md:grid-cols-3 md:py-6 md:px-6 pb-3">

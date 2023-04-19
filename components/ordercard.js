@@ -6,9 +6,9 @@ function OrderCard({ order }) {
   console.log(order);
   return (
     <div className="py-2 px-4 rounded-lg shadow-lg mb-2">
-      <div className="flex place-items-center text-xs text-cusblack py-1">
+      <div className="flex place-items-center text-xs text-black py-1">
         <svg
-          className="w-5 h-5 text-cusblack"
+          className="w-5 h-5 text-black"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@ function OrderCard({ order }) {
         </svg>
         <p className="mx-2 font-semibold">Shop</p>
         <p>{moment.unix(order.timestamp).format("DD MMM YYYY")}</p>
-        <div className="py-0.5 px-2 bg-cusblack text-white mx-3 flex text-[8px] place-items-center rounded-lg">
+        <div className="py-0.5 px-2 bg-black text-white mx-3 flex text-[8px] place-items-center rounded-lg">
           processed
         </div>
       </div>
@@ -36,16 +36,16 @@ function OrderCard({ order }) {
                   src={order.images[idx]}
                   alt=""
                 />
-                <div className="mx-3 text-xs text-cusblack">
+                <div className="mx-3 text-xs text-black">
                   <p className="text-sm font-semibold">{it.description}</p>
                   <div className="flex">
-                    <p className="text-cusblack mr-1">{it.quantity} x </p>
+                    <p className="text-black mr-1">{it.quantity} x </p>
                     <NumberFormat
                       value={(it.amount_subtotal / it.quantity) * 100}
                       className="text-gray-400 text-xs"
                       displayType={"text"}
                       thousandSeparator={true}
-                      prefix={"Rp"}
+                      prefix={"$"}
                       renderText={(value, props) => (
                         <p className="text-gray-400 text-xs" {...props}>
                           {value}
@@ -57,7 +57,7 @@ function OrderCard({ order }) {
               </div>
             ))}
           </div>
-          <div className="md:w-1/4 mt-2 md:mt-0 text-xs text-cusblack flex md:flex-col justify-center place-items-center">
+          <div className="md:w-1/4 mt-2 md:mt-0 text-xs text-black flex md:flex-col justify-center place-items-center">
             <p className="text-gray-400 md:mb-1">Total Amount :</p>
             <NumberFormat
               value={order.items.reduce(
@@ -67,7 +67,7 @@ function OrderCard({ order }) {
               className="font-semibold"
               displayType={"text"}
               thousandSeparator={true}
-              prefix={"Rp"}
+              prefix={"$"}
               renderText={(value, props) => (
                 <p className="text-gray-400 text-xs" {...props}>
                   {value}

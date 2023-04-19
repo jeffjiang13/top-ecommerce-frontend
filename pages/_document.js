@@ -28,32 +28,32 @@ class MyDocument extends Document {
           <meta name="msapplication-tap-highlight" content="no" />
           <meta name="theme-color" content="#fff" />
 
-          <link rel="apple-touch-icon" href="/icon-192x192.png" />
+          <link rel="apple-touch-icon" href="/icon.png" />
           <link
             rel="apple-touch-icon"
             sizes="152x152"
-            href="/icon-192x192.png"
+            href="/icon.png"
           />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="/icon-192x192.png"
+            href="/icon.png"
           />
           <link
             rel="apple-touch-icon"
             sizes="167x167"
-            href="/icon-192x192.png"
+            href="/icon.png"
           />
 
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="/icon-192x192.png"
+            href="/icon.png"
           />
 
-          <link rel="mask-icon" href="/icon-192x192.png" color="#5bbad5" />
-          <link rel="shortcut icon" href="/icon-192x192.png" />
+          <link rel="mask-icon" href="/icon.png" color="#5bbad5" />
+          <link rel="shortcut icon" href="/icon.png" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
@@ -66,7 +66,7 @@ class MyDocument extends Document {
             name="twitter:description"
             content="Shoe Store based in Indonesia"
           />
-          <meta name="twitter:image" content="/icon-192x192.png" />
+          <meta name="twitter:image" content="/icon.png" />
           <meta name="twitter:creator" content="@mudzikale" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="ChiqueChick Store" />
@@ -76,10 +76,10 @@ class MyDocument extends Document {
           />
           <meta property="og:site_name" content="ChiqueChick" />
           <meta property="og:url" content="https://ChiqueChick.vercel.com" />
-          <meta property="og:image" content="/icon-192x192.png" />
+          <meta property="og:image" content="/icon.png" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="manifest" href="/manifest.json" />
-          <link rel="icon" href="/icon-512x512.png" type="image/x-icon" />
+          <link rel="icon" href="/icon.png" type="image/x-icon" />
           <link
             rel="preconnect"
             href="https://fonts.gstatic.com"

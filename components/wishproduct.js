@@ -13,20 +13,23 @@ function WishProduct({ item, idx }) {
         initial={{ scale: 1.5, x: 100, y: -100, opacity: 0 }}
         animate={{ scale: 1, x: 0, y: 0, opacity: 1 }}
       >
+        <Link href={"/product/" + item.slug}>
+
         <img
-          className="h-28 rounded-lg object-cover w-full"
-          src={item.prop[0].image[0]}
+          className=" rounded-lg object-cover w-full h-60"
+          src={item.image[0].name}
           alt=""
         />
+      </Link>
       </motion.div>
-      <div className="px-2 py-1 text-cusblack">
+      <div className="px-2 py-1 text-black">
         <p className="text-sm line-clamp-1">{item.name}</p>
         <NumberFormat
           value={item.price}
           className="text-xs my-1.5"
           displayType={"text"}
           thousandSeparator={true}
-          prefix={"Rp"}
+          prefix={"$"}
           renderText={(value, props) => (
             <p className="text-xs my-1.5" {...props}>
               {value}
@@ -34,13 +37,13 @@ function WishProduct({ item, idx }) {
           )}
         />
         <Link href={"/product/" + item.slug}>
-          <button className="text-white bg-cusblack border border-cusblack py-1 text-xs w-full rounded-lg">
+          <button className="text-white bg-black border border-black py-1 text-xs w-full rounded-lg">
             View product
           </button>
         </Link>
         <button
           onClick={() => dispatch(removeFromWishlist(item))}
-          className="text-cusblack mt-1.5 bg-white border border-cusblack py-1 text-xs w-full rounded-lg"
+          className="text-black mt-1.5 bg-white border border-black py-1 text-xs w-full rounded-lg"
         >
           Remove
         </button>
