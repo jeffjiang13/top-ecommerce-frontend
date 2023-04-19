@@ -8,6 +8,11 @@ function TopCategory({ categories }) {
   useEffect(() => {
     setIsActive(asPath);
   }, [asPath]);
+  if (!Array.isArray(categories)) {
+    console.error("Categories prop is not an array:", categories);
+    return null;
+  }
+
 
   const [isActive, setIsActive] = useState("/shop");
   return (
