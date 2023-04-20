@@ -26,7 +26,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const endpointSecret = 'whsec_IFSk0puk8kuHyU3Mt2GxkIqYDflHO0oX';
 
-const fulfillOrder = async (session) => {
+cconst fulfillOrder = async (session) => {
   console.log('Attempting to fulfill order', session);
 
   try {
@@ -37,16 +37,17 @@ const fulfillOrder = async (session) => {
       .collection("orders")
       .doc(session.id)
       .set({
-        amount: (session.amount_total / 100) * 10000,
-        amount_shipping: (session.total_details.amount_shipping / 100) * 10000,
+        amount: session.amount_total / 100,
+        amount_shipping: session.total_details.amount_shipping / 100 || 30,
         images: JSON.parse(session.metadata.images),
-        timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        timeStamp: admin.firestore.FieldValue.serverTimestamp(),
       });
     console.log(`Order Success ${session.id}`);
   } catch (error) {
     console.error('Error fulfilling order:', error);
   }
 };
+
 
 
 const handleEvent = async (event) => {
