@@ -20,10 +20,5 @@ module.exports = {
   images: {
     domains: ['i.ibb.co', 'ibb.co',"static.footshop.com"],
   },
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.experiments = {
-      topLevelAwait: true,
-    };
-    return config;
-  },
+
 };
