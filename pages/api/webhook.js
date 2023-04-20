@@ -51,7 +51,7 @@ const fulfillOrder = async (session) => {
 
 const handleEvent = async (event) => {
   switch (event.type) {
-    case 'payment_intent.succeeded':
+    case 'checkout.session.completed':
       // Handle successful payment
       const session = event.data.object;
       await fulfillOrder(session);
@@ -63,6 +63,7 @@ const handleEvent = async (event) => {
       console.log(`Unhandled event type: ${event.type}`);
   }
 };
+
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
