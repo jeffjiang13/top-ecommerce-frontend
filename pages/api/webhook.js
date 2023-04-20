@@ -24,7 +24,7 @@ const app = !admin.apps.length
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const endpointSecret = 'whsec_IFSk0puk8kuHyU3Mt2GxkIqYDflHO0oX';
+const endpointSecret = 'whsec_dpjzfLobbYaJG1IYHLVusMXATbDDiuuy';
 
 const fulfillOrder = async (session) => {
   console.log('Attempting to fulfill order', session);
