@@ -30,7 +30,9 @@ function BasketProduct({ item, idx }) {
               <li>Color: {item.color}</li>
               <li>Design ID: {item.category.slug}</li>
               <li>Quantity: {item.quantity}</li>
-              <li>Size: {item.selectedSizeProp}</li>
+              <li>
+                Size: {item.selectedSizeProp ? item.selectedSizeProp.size : "Not available"}
+              </li>
             </ul>
           </div>
         </div>

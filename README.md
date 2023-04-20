@@ -5,7 +5,7 @@
 ## About The Project
 
 **Wefootwear E-commerce** is an example online shop built with Next js.
-[demo](https://.vercel.app/)
+[demo](https://chiquechick-frontend.vercel.app/)
 
 ## Stacks
 
@@ -32,7 +32,7 @@
 ### Clone Repository
 
 ```
-git clone https://github.com/.git
+git clone https://github.com/jeffjiang13/top-ecommerce-frontend.git
 ```
 
 ```

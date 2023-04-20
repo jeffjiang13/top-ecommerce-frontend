@@ -186,7 +186,7 @@ function Product({ dataItem, dataAlso }) {
                     dispatch(
                       addToBasket({
                         ...dataItem,
-                        selectedSizeProp: dataItem.size[selectedSize],
+                        selectedSizeProp: dataItem.size.data[selectedSize],
                       })
                     );
                   }}

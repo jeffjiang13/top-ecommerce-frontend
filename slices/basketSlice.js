@@ -3,22 +3,35 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   items: [],
 };
-
-export const addItemToCart = (cartItems, cartItemToAdd) => {
+const addItemToCart = (cartItems, cartItemToAdd) => {
   const existingCartItem = cartItems.find(
-    (cartItem) => cartItem.id === cartItemToAdd.id
+    (cartItem) =>
+      cartItem.id === cartItemToAdd.id &&
+      cartItem.selectedSizeProp &&
+      cartItemToAdd.selectedSizeProp &&
+      cartItem.selectedSizeProp.size === cartItemToAdd.selectedSizeProp.size
   );
 
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
-      cartItem.id === cartItemToAdd.id
+      cartItem.id === cartItemToAdd.id &&
+      cartItem.selectedSizeProp.size === cartItemToAdd.selectedSizeProp.size
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
   }
 
-  return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
+
+  return [
+    ...cartItems,
+    {
+      ...cartItemToAdd,
+      quantity: 1,
+      selectedSizeProp: cartItemToAdd.selectedSizeProp || {},
+    },
+  ];
 };
+
 
 export const basketSlice = createSlice({
   name: "basket",
@@ -32,7 +45,11 @@ export const basketSlice = createSlice({
       state.items = addItemToCart(state.items, action.payload);
     },
     removeFromBasket: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
+      state.items = state.items.filter(
+        (item) =>
+          item.id !== action.payload.id ||
+          item.selectedSizeProp.size !== action.payload.selectedSizeProp.size
+      );
     },
     plusItem: (state, action) => {
       [...state.items, (state.items[action.payload].quantity += 1)];
