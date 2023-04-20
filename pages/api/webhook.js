@@ -1,6 +1,6 @@
 import { buffer } from "micro";
 import * as admin from "firebase-admin";
-
+import getRawBody from "raw-body";
 const serviceAccount = {
   "type": "service_account",
   "project_id": "chiquechick-165de",
@@ -13,7 +13,7 @@ const serviceAccount = {
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vzq0w%40chiquechick-165de.iam.gserviceaccount.com"
 }
-
+const rawBody = await getRawBody(req);
 const fullFillOrder = async (session) => {
   console.log("Full fill order", session);
 
@@ -53,7 +53,7 @@ export default async (req, res) => {
       const payload = requestBuffer.toString();
       const sig = req.headers["stripe-signature"];
 
-      const event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+      const event = stripe.webhooks.constructEvent(rawBody, sig, endpointSecret);
 
       if (event.type === "checkout.session.completed") {
         const session = event.data.object;
