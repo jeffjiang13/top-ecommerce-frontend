@@ -39,23 +39,29 @@ const fulfillOrder = async (session) => {
     })
     .then(console.log(`Order Success ${session.id}`));
 };
+
 export default async (req, res) => {
   if (req.method === "POST") {
     const requestBuffer = await buffer(req);
     const payload = requestBuffer.toString();
     const sig = req.headers["stripe-signature"];
     let event;
+
     try {
       event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
     } catch (err) {
-      console.log("error");
-      return res.status(400).send("error");
+      console.log("Error constructing event:", err.message);
+      return res.status(400).send("Error constructing event: " + err.message);
     }
+
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
       return fulfillOrder(session)
         .then(() => res.status(200))
-        .catch((err) => res.status(400).send("webhook error" + err.message));
+        .catch((err) => {
+          console.log("Webhook error:", err.message);
+          res.status(400).send("Webhook error: " + err.message);
+        });
     }
   }
 };
