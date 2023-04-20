@@ -10,7 +10,7 @@ export default async (req, res) => {
       unit_amount: Math.round(item.price * 100),
       product_data: {
         name: item.name,
-        description: `${item.name} - ${item.selectedSizeProp}`,
+        description: `${item.name} - ${item.selectedSizeProp.size}`,
 
         images: [item.image[0].name],
       },
