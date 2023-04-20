@@ -26,7 +26,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const endpointSecret = 'whsec_IFSk0puk8kuHyU3Mt2GxkIqYDflHO0oX';
 
-cconst fulfillOrder = async (session) => {
+const fulfillOrder = async (session) => {
   console.log('Attempting to fulfill order', session);
 
   try {
