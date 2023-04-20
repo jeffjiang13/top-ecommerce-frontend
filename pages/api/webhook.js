@@ -22,7 +22,7 @@ const app = !admin.apps.length
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
+const endpointSecret = 'whsec_IFSk0puk8kuHyU3Mt2GxkIqYDflHO0oX';
 
 const fulfillOrder = async (session) => {
   return app
