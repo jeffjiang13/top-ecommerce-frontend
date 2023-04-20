@@ -1,5 +1,6 @@
 import { buffer } from "micro";
 import * as admin from "firebase-admin";
+import getRawBody from 'raw-body';
 
 const serviceAccount = {
   "type": "service_account",
