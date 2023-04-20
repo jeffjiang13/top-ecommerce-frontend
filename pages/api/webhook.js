@@ -30,6 +30,13 @@ const fulfillOrder = async (session) => {
   console.log('Attempting to fulfill order', session);
 
   try {
+    const amount = session.amount_total / 100;
+    const amount_shipping = session.total_details.amount_shipping / 100 || 30;
+    const images = JSON.parse(session.metadata.images);
+    const timeStamp = admin.firestore.FieldValue.serverTimestamp();
+
+    console.log('Calculated values:', { amount, amount_shipping, images, timeStamp });
+
     await app
       .firestore()
       .collection("users")
@@ -37,10 +44,10 @@ const fulfillOrder = async (session) => {
       .collection("orders")
       .doc(session.id)
       .set({
-        amount: session.amount_total / 100,
-        amount_shipping: session.total_details.amount_shipping / 100 || 30,
-        images: JSON.parse(session.metadata.images),
-        timeStamp: admin.firestore.FieldValue.serverTimestamp(),
+        amount,
+        amount_shipping,
+        images,
+        timeStamp,
       });
     console.log(`Order Success ${session.id}`);
   } catch (error) {
