@@ -61,7 +61,7 @@ function OrderCard({ order }) {
             <p className="text-gray-400 md:mb-1">Total Amount :</p>
             <NumberFormat
               value={order.items.reduce(
-                (val, item) => val + item.amount_subtotal * 100,
+                (val, item) => val + item.amount_subtotal,
                 0
               )}
               className="font-semibold"
