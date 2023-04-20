@@ -60,6 +60,9 @@ export const basketSlice = createSlice({
     deleteFromBasket: (state, action) => {
       state.items = [];
     },
+    clear: (state) => {
+      return initialState;
+    },
   },
 });
 
@@ -69,6 +72,7 @@ export const {
   plusItem,
   minusItem,
   deleteFromBasket,
+  clear,
 } = basketSlice.actions;
 
 // Selectors - This is how we pull information from the Global store slice

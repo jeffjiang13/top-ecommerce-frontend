@@ -8,6 +8,9 @@ export const wishlistSlice = createSlice({
   name: "wishlist",
   initialState,
   reducers: {
+    clear: (state) => {
+      return initialState;
+    },
     addToWishlist: (state, action) => {
       const added = state.wishItems.find(
         (item) => item.id === action.payload.id
@@ -23,7 +26,7 @@ export const wishlistSlice = createSlice({
   },
 });
 
-export const { addToWishlist, removeFromWishlist } = wishlistSlice.actions;
+export const { addToWishlist, removeFromWishlist, clear } = wishlistSlice.actions;
 
 // Selectors - This is how we pull information from the Global store slice
 export const selectWishItems = (state) => state.wishlist.wishItems;

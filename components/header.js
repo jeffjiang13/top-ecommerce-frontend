@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectItems } from "../slices/basketSlice";
-import { selectWishItems } from "../slices/wishlistSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectItems, clear as clearBasket } from "../slices/basketSlice";
+import { selectWishItems, clear as clearWishlist } from "../slices/wishlistSlice";
+
 import MenuNav from "./menunav";
 import nookies from "nookies";
 import { useRouter } from "next/dist/client/router";
@@ -15,6 +16,8 @@ function Header() {
   const dataWish = useSelector(selectWishItems);
   const [wish, setWish] = useState([]);
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
 
   const [cookie, setCookie] = useState({});
   useEffect(() => {
@@ -34,6 +37,8 @@ function Header() {
   const signOut = () => {
     destroyCookie(null, "token");
     destroyCookie(null, "user");
+    dispatch(clearBasket());
+    dispatch(clearWishlist());
     router.replace("/login");
   };
   return (
