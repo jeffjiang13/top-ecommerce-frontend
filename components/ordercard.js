@@ -3,7 +3,7 @@ import NumberFormat from "react-number-format";
 import moment from "moment";
 
 function OrderCard({ order }) {
-  console.log(order);
+
   return (
     <div className="py-2 px-4 rounded-lg shadow-lg mb-2">
       <div className="flex place-items-center text-xs text-black py-1">

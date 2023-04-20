@@ -27,7 +27,6 @@ function Register() {
 
   const handleChange = (e) => {
     setField({ ...field, [e.target.name]: e.target.value });
-    console.log(field);
   };
 
   const doRegister = async (e) => {
@@ -44,7 +43,6 @@ function Register() {
       }
     );
     const res = await req.json();
-    console.log(res);
 
     if (res.jwt) {
       setSuccess(true);

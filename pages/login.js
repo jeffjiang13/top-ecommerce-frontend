@@ -49,7 +49,6 @@ function Login() {
       nookies.set(null, "token", JSON.stringify(res.jwt));
       nookies.set(null, "user", JSON.stringify(res.user));
       setField({});
-      console.log("success");
       e.target.reset();
       router.push("/shop");
     }

@@ -13,7 +13,6 @@ function Search() {
     );
     const data = await res.json();
     setData(data);
-    console.log("Data received:", data);
   };
 
   const debouncedFetchItems = debounce(fetchItems, 500);
@@ -30,7 +29,6 @@ function Search() {
   }, [input]);
 
   const handleItemClick = (slug) => {
-    console.log("Item clicked:", slug);
     setInput("");
     Router.push("/product/" + slug);
   };
@@ -55,7 +53,6 @@ function Search() {
           data
             .filter((i, idx) => idx < 4)
             .map((item, idx) => {
-              console.log("Rendering item:", item.slug, item.name);
               return (
                 <div key={idx} onClick={() => handleItemClick(item.slug)}>
                   <div className="p-2 flex place-items-center cursor-pointer text-xs font-light text-black hover:bg-gray-100 active:bg-gray-200">

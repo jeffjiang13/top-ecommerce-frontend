@@ -55,7 +55,6 @@ export async function getServerSideProps(ctx) {
 }
 
 function Order({ orders, session }) {
-  console.log("Orders:", orders); // Add this line to log orders
 
   return (
     <>
