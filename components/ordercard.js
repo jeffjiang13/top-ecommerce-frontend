@@ -41,7 +41,7 @@ function OrderCard({ order }) {
                   <div className="flex">
                     <p className="text-black mr-1">{it.quantity} x </p>
                     <NumberFormat
-                      value={(it.amount_subtotal / it.quantity) * 100}
+                      value={(it.amount_subtotal / it.quantity)}
                       className="text-gray-400 text-xs"
                       displayType={"text"}
                       thousandSeparator={true}
