@@ -48,7 +48,8 @@ export default async (req, res) => {
     let event;
 
     try {
-      event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+      const payloadJSON = JSON.parse(payload);
+      event = stripe.webhooks.constructEvent(payloadJSON, sig, endpointSecret);
     } catch (err) {
       console.log("Error constructing event:", err.message);
       return res.status(400).send("Error constructing event: " + err.message);
