@@ -3,6 +3,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import nookies from "nookies";
 import Head from "next/head";
+import { useRouter } from "next/dist/client/router";
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
@@ -24,6 +25,9 @@ function Register() {
   const [field, setField] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [emailTaken, setEmailTaken] = useState(false);
+  const [usernameTaken, setUsernameTaken] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e) => {
     setField({ ...field, [e.target.name]: e.target.value });
@@ -46,8 +50,16 @@ function Register() {
 
     if (res.jwt) {
       setSuccess(true);
+      setEmailTaken(false);
+      setUsernameTaken(false);
       setField({});
       e.target.reset();
+    } else if (res.message) {
+      if (res.message[0].messages[0].id === 'Auth.form.error.email.taken') {
+        setEmailTaken(true);
+      } else if (res.message[0].messages[0].id === 'Auth.form.error.username.taken') {
+        setUsernameTaken(true);
+      }
     }
     setLoading(false);
   };
@@ -84,8 +96,20 @@ function Register() {
             best of products, inspiration and community.
           </p>
           {success && (
-            <div className="text-xs text-center mb-2 font-light text-green-500">
-              Your account has been registered as a member
+            <div className="text-xs text-center mb-2 font-light text-green-500 font-bold">
+              Your account has been registered as a member.
+              <br />
+              Please sign in <Link href="/login"className="underline">here</Link>
+            </div>
+          )}
+          {emailTaken && (
+            <div className="text-xs text-center mb-2 font-light text-red-500 font-bold">
+              Email or username is already taken
+              </div>
+          )}
+          {usernameTaken && (
+            <div className="text-xs text-center mb-2 font-light text-red-500 font-bold">
+              Username is already taken
             </div>
           )}
           <input
@@ -114,7 +138,7 @@ function Register() {
           />
 
           <p className="text-xs text-gray-400 my-2 text-center px-6">
-            By register, you agree to shop's{" "}
+            By registering, you agree to shop's{" "}
             <span className="underline">Privacy Policy</span> and{" "}
             <span className="underline">Terms of Use</span>.
           </p>
@@ -125,7 +149,7 @@ function Register() {
             JOIN US
           </button>
           <div className="text-xs text-gray-400 mt-5">
-            Already have?{" "}
+            Already have an account?{" "}
             <Link href="/login">
               <p className="underline">Sign In</p>
             </Link>
