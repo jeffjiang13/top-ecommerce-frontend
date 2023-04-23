@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import nookies from "nookies";
 import Head from "next/head";
+import { useDispatch } from 'react-redux';
+import { setToken } from '../app/tokenSlice';
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
@@ -26,6 +28,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [error, setError] = useState(false);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setField({ ...field, [e.target.name]: e.target.value });
@@ -48,6 +51,8 @@ function Login() {
     if (res.jwt) {
       nookies.set(null, "token", JSON.stringify(res.jwt));
       nookies.set(null, "user", JSON.stringify(res.user));
+      dispatch(setToken(res.jwt));
+
       setField({});
       console.log("success");
       e.target.reset();
@@ -89,7 +94,7 @@ function Login() {
           </h1>
           <form onSubmit={doLogin}>
             {error && (
-              <div className="text-xs text-light text-center text-red-500">
+              <div className="text-xs text-center text-red-500 font-bold">
                 Invalid email or password, check your input again
               </div>
             )}

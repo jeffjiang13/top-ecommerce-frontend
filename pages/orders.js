@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import nookies from "nookies";
 import db from "../firebase/firebase";
 import moment from "moment";
@@ -55,6 +55,7 @@ export async function getServerSideProps(ctx) {
 }
 
 function Order({ orders, session }) {
+  const [_, setSession] = useState(session);
 
   return (
     <>
@@ -65,7 +66,7 @@ function Order({ orders, session }) {
         <Header />
         <div className="max-w-6xl mx-auto pt-20 px-5 grid grid-cols-1 md:grid-cols-4">
           <div className="col-span-1 mb-7">
-            <CardProfile session={session} orders={orders} />
+            <CardProfile session={session} orders={orders} setSession={setSession}/>
           </div>
           <div className="col-span-3 md:ml-10 rounded-2xl px-8 py-6 bg-white shadow-lg">
             <h1 className="mb-4">Your Orders ({orders.length})</h1>

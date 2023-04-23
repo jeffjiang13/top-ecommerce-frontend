@@ -1,11 +1,115 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NumberFormat from "react-number-format";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
-function CardProfile({ session, orders }) {
+function CardProfile({ session: initialSession, orders }) {
+  const [session, setSession] = useState(initialSession);
+  const [imageUrl, setImageUrl] = useState(
+    initialSession.profileImage
+      ? `${process.env.NEXT_PUBLIC_APIURL}${initialSession.profileImage.url}`
+      : ""
+  );
+  const [isLoading, setIsLoading] = useState(true);
+  const token = useSelector((state) => state.token.value);
+
+  useEffect(() => {
+    console.log("Token:", token);
+
+    const fetchUserData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_APIURL}/users/${initialSession.id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("Fetched user data:", response);
+        setSession(response.data);
+        if (response.data.profileImage) {
+          setImageUrl(
+            `${process.env.NEXT_PUBLIC_APIURL}${response.data.profileImage.url}`
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [token, initialSession.id]);
+
+  const uploadImage = async (imageFile) => {
+    const formData = new FormData();
+    formData.append("files", imageFile);
+
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_APIURL}/upload`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      const userUpdateResponse = await axios.put(
+        `${process.env.NEXT_PUBLIC_APIURL}/users/${session.id}`,
+        { profileImage: res.data[0].id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setSession({
+        ...session,
+        profileImage: res.data[0],
+      });
+      setImageUrl(`${process.env.NEXT_PUBLIC_APIURL}${res.data[0].url}`);
+    } catch (err) {
+      console.log("Image upload error:", err);
+    }
+  };
+
+  const onImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const selectedImage = event.target.files[0];
+      uploadImage(selectedImage);
+    }
+  };
+
   return (
     <div className="rounded-2xl p-5 bg-white shadow-lg">
       <div className="flex flex-col place-items-center pb-3 border-b border-gray-300">
-        <div className="w-14 h-14 rounded-full bg-black mb-2"></div>
+        <label htmlFor="upload-image" className="cursor-pointer">
+          {isLoading ? (
+            <div className="w-24 h-24 rounded-full bg-gray-200 animate-spin mb-2"></div>
+          ) : imageUrl ? (
+            <img
+              src={imageUrl}
+              className="w-24 h-24 rounded-full mb-2"
+              alt="Profile"
+              onLoad={() => setIsLoading(false)}
+            />
+          ) : (
+            <div className="w-24 h-24 rounded-full bg-black mb-2"></div>
+          )}
+          <input
+            type="file"
+            id="upload-image"
+            className="hidden"
+            accept="image/*"
+            onChange={onImageChange}
+          />
+        </label>
         <div className="text-center">
           <p className="mb-1">{session.username}</p>
           <p className="text-xs text-gray-400 mb-1">Verified Account</p>
@@ -40,7 +144,7 @@ function CardProfile({ session, orders }) {
             value={orders.reduce(
               (val, order) =>
                 val +
-                order.items.reduce((v, i) => v + i.amount_subtotal, 0),
+                order.items.reduce((v, i) => v + i.amount_subtotal / 100, 0),
               0
             )}
             className="text-gray-400 text-xs"
@@ -55,6 +159,10 @@ function CardProfile({ session, orders }) {
           />
         </div>
       </div>
+      <p className="text-gray-400 text-xs">
+        Shop now and earn a new pair of shoes with every $1000 spent - loyalty
+        has never looked so stylish!
+      </p>
     </div>
   );
 }

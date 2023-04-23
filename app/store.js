@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import basketReducer from "../slices/basketSlice";
 import categoryReducer from "../slices/categorySlice";
 import wishlistReducer from "../slices/wishlistSlice";
+import tokenReducer from "./tokenSlice";
 
 export const loadState = () => {
   try {
@@ -17,6 +18,7 @@ export const loadState = () => {
 
 export const store = configureStore({
   reducer: {
+    token: tokenReducer,
     basket: basketReducer,
     category: categoryReducer,
     wishlist: wishlistReducer,

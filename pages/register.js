@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import nookies from "nookies";
 import Head from "next/head";
 import { useRouter } from "next/dist/client/router";
+import { setToken } from '../app/tokenSlice';
+import { useDispatch } from 'react-redux';
 
 export async function getServerSideProps(ctx) {
   const cookies = nookies.get(ctx);
@@ -28,6 +30,7 @@ function Register() {
   const [emailTaken, setEmailTaken] = useState(false);
   const [usernameTaken, setUsernameTaken] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setField({ ...field, [e.target.name]: e.target.value });
@@ -49,11 +52,17 @@ function Register() {
     const res = await req.json();
 
     if (res.jwt) {
+      nookies.set(null, "token", JSON.stringify(res.jwt));
+      nookies.set(null, "user", JSON.stringify(res.user));
+      dispatch(setToken(res.jwt));
+
       setSuccess(true);
       setEmailTaken(false);
       setUsernameTaken(false);
       setField({});
       e.target.reset();
+      router.push("/shop");
+
     } else if (res.message) {
       if (res.message[0].messages[0].id === 'Auth.form.error.email.taken') {
         setEmailTaken(true);
@@ -98,8 +107,6 @@ function Register() {
           {success && (
             <div className="text-xs text-center mb-2 font-light text-green-500 font-bold">
               Your account has been registered as a member.
-              <br />
-              Please sign in <Link href="/login"className="underline">here</Link>
             </div>
           )}
           {emailTaken && (
