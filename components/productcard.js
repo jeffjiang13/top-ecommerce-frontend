@@ -23,12 +23,19 @@ function ProductCard({ item }) {
           <Link href={"/product/" + item.slug}>
             <div className="w-full h-full overflow-hidden rounded-xl">
               <Image
-                height={700}
-                width={700}
                 loading="lazy"
                 src={item.image[0].name}
                 alt={item.name}
-                className="rounded-xl w-60 h-60 bg-gray object-center"
+                className="rounded-xl w-60 h-60"
+                width={500}
+                height={500}
+                style={{
+                  objectFit: "cover",
+                  aspectRatio: "1/1",
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  transition: "opacity 0.5s ease-in-out",
+                }}
               />
             </div>
           </Link>

@@ -1,4 +1,4 @@
-# STORE
+# ChiqueChick STORE
 
 ### Full Stack E-commerce Website
 
