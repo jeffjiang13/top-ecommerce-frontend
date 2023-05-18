@@ -81,7 +81,6 @@ yarn dev
 
 ```
 
-```
 
 
 This will start the Next.js development server on a localhost port (typically port 3000). Open your preferred web browser and visit http://localhost:3000. You should see the ChiqueChick application running.
