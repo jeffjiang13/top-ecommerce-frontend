@@ -32,7 +32,7 @@ While this application currently operates in test mode, the platform can be easi
 - [MongoDB](https://www.mongodb.com/cloud/atlas)
 - [Stripe](https://stripe.com)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
-- [Vercel] (https://vercel.com/)
+- [Vercel](https://vercel.com/) (Deployment)
 
 **Some features**:
 
