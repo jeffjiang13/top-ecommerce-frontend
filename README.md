@@ -1,10 +1,15 @@
-# ChiqueChick STORE
+<div align="center" id="top">
+
+# ChiqueChick
+
+  <img src="./public/port1.png" alt="Ecommerce 5" />
 
 ### Full Stack E-commerce Website
 
 ## About The Project
 
 [demo](https://chiquechick-frontend.vercel.app/)
+</div>
 
 ## Stacks
 
