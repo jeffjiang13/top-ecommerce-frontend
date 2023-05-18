@@ -50,10 +50,44 @@ While this application currently operates in test mode, the platform can be easi
 
 ### Clone Repository
 
-```
+
+Get Started Locally
+To get a local copy of ChiqueChick up and running, follow these simple steps:
+
+Clone the repository:
+
+bash
+Copy code
 git clone https://github.com/jeffjiang13/top-ecommerce-frontend.git
-```
+Navigate into the cloned project directory:
 
-```
+bash
+Copy code
+cd top-ecommerce-frontend
+Install the project dependencies:
 
-```
+bash
+Copy code
+npm install
+or if you prefer using yarn:
+
+bash
+Copy code
+yarn
+Once the dependencies are installed, you can start the development server:
+
+bash
+Copy code
+npm run dev
+or with yarn:
+
+bash
+Copy code
+yarn dev
+This will start the Next.js development server on a localhost port (typically port 3000).
+
+Open your preferred web browser and visit http://localhost:3000. You should see the ChiqueChick application running.
+
+Please note, for this application to run locally, you will need to set up the corresponding backend and ensure that it is running concurrently. The backend repository can be found at [backend repository link]. Follow the instructions provided in the backend repository README for setup.
+
+Enjoy exploring the application!
